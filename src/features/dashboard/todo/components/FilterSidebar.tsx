@@ -10,11 +10,12 @@ const statusOptions: { value: TodoStatus | 'all'; label: string }[] = [
 
 const categoryOptions: { value: TodoCategory | 'all'; label: string }[] = [
   { value: 'all', label: 'All' },
-  { value: 'study', label: 'Study' },
-  { value: 'project', label: 'Project' },
-  { value: 'certificate', label: 'Certificate' },
-  { value: 'interview', label: 'Interview' },
-  { value: 'networking', label: 'Networking' },
+  { value: 'cote', label: '코테' },
+  { value: 'project', label: '프로젝트' },
+  { value: 'cs', label: 'CS' },
+  { value: 'resume', label: '이력서' },
+  { value: 'interview', label: '면접' },
+  { value: 'etc', label: '기타' },
 ]
 
 export default function FilterSidebar() {

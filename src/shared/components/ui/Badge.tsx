@@ -1,6 +1,6 @@
 interface BadgeProps {
   label: string
-  color?: 'blue' | 'green' | 'yellow' | 'red' | 'gray'
+  color?: 'blue' | 'green' | 'yellow' | 'red' | 'gray' | 'purple' | 'pink'
   className?: string
 }
 
@@ -11,6 +11,8 @@ export default function Badge({ label, color = 'blue', className = '' }: BadgePr
     yellow: 'bg-yellow-100 text-yellow-700',
     red: 'bg-red-100 text-red-700',
     gray: 'bg-gray-100 text-gray-700',
+    purple: 'bg-purple-100 text-purple-700',
+    pink: 'bg-pink-100 text-pink-700',
   }
 
   return (

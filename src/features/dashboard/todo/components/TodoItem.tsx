@@ -1,18 +1,19 @@
 import type { Todo } from '../types'
 import { useTodoStore } from '../stores/todoStore'
-import Card from '../../../shared/components/ui/Card'
-import Badge from '../../../shared/components/ui/Badge'
+import Card from '../../../../shared/components/ui/Card'
+import Badge from '../../../../shared/components/ui/Badge'
 
 interface TodoItemProps {
   todo: Todo
 }
 
 const categoryColors = {
-  study: 'blue' as const,
+  cote: 'blue' as const,
   project: 'green' as const,
-  certificate: 'yellow' as const,
+  cs: 'purple' as const,
+  resume: 'pink' as const,
   interview: 'red' as const,
-  networking: 'gray' as const,
+  etc: 'gray' as const,
 }
 
 export default function TodoItem({ todo }: TodoItemProps) {

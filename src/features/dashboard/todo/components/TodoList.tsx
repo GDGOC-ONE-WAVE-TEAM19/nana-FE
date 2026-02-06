@@ -1,6 +1,6 @@
 import { useTodos } from '../hooks/useTodos'
 import TodoItem from './TodoItem'
-import ProgressBar from '../../../shared/components/ui/ProgressBar'
+import ProgressBar from '../../../../shared/components/ui/ProgressBar'
 
 export default function TodoList() {
   const { todos, stats } = useTodos()

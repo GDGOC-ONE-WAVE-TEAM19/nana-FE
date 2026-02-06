@@ -1,5 +1,5 @@
 export type TodoStatus = 'pending' | 'in_progress' | 'done'
-export type TodoCategory = 'study' | 'project' | 'certificate' | 'interview' | 'networking'
+export type TodoCategory = 'cote' | 'project' | 'cs' | 'resume' | 'interview' | 'etc'
 
 export interface Todo {
   id: string
