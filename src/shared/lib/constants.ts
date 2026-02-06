@@ -3,7 +3,6 @@ export const APP_NAME = 'StepIn'
 export const ROUTES = {
   ONBOARDING: '/onboarding',
   BUNDLES: '/bundles',
-  PLAN: '/plan',
   DASHBOARD: '/dashboard',
 } as const
 
@@ -14,9 +13,10 @@ export const TODO_STATUS = {
 } as const
 
 export const TODO_CATEGORY = {
-  STUDY: 'study',
+  COTE: 'cote',
   PROJECT: 'project',
-  CERTIFICATE: 'certificate',
+  CS: 'cs',
+  RESUME: 'resume',
   INTERVIEW: 'interview',
-  NETWORKING: 'networking',
+  ETC: 'etc',
 } as const

@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useTodoStore } from '../../todo/stores/todoStore'
+import { useTodoStore } from '../todo/stores/todoStore'
 
 export function useDashboard() {
   const todos = useTodoStore((s) => s.todos)
