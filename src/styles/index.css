@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #6C5CE7;
+  --color-accent: #00CEC9;
+  --color-gold: #FDCB6E;
+  --color-success: #00B894;
+  --color-bg: #F8F9FE;
+  --color-surface: #FFFFFF;
+  --color-text: #2D3436;
+  --color-gray: #636E72;
+
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --shadow-card: 0 4px 24px rgba(108, 92, 231, 0.08);
+}
