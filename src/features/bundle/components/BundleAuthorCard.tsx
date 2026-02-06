@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import type { BundleAuthor } from '../types'
 
 // Icons
@@ -24,10 +25,15 @@ const VerifiedIcon = () => (
 
 interface BundleAuthorCardProps {
     author: BundleAuthor
-    onViewRoadmap?: (authorId: string) => void
 }
 
-export default function BundleAuthorCard({ author, onViewRoadmap }: BundleAuthorCardProps) {
+export default function BundleAuthorCard({ author }: BundleAuthorCardProps) {
+    const navigate = useNavigate()
+
+    const handleViewRoadmap = () => {
+        navigate(`/bundles/${author.id}`)
+    }
+
     return (
         <article className="bg-white rounded-2xl p-5 shadow-[0_4px_20px_rgba(0,0,0,0.05)] border-l-4 border-[#6C5CE7] flex flex-col justify-between h-full hover:-translate-y-1 transition-transform duration-300">
             <div>
@@ -73,7 +79,7 @@ export default function BundleAuthorCard({ author, onViewRoadmap }: BundleAuthor
 
             {/* CTA Button */}
             <button
-                onClick={() => onViewRoadmap?.(author.id)}
+                onClick={handleViewRoadmap}
                 className="w-full py-3 rounded-xl bg-[#EFEEFF] text-[#6C5CE7] font-bold text-sm hover:bg-purple-100 transition-colors flex items-center justify-center gap-1 group"
             >
                 이 로드맵 보기

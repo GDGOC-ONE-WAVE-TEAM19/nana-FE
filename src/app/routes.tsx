@@ -5,6 +5,7 @@ import OnboardingPage from '../pages/OnboardingPage'
 import BundlePage from '../pages/BundlePage'
 import MyPlanPage from '../pages/MyPlanPage'
 import DashboardPage from '../pages/DashboardPage'
+import RoadmapDetailPage from '../pages/RoadmapDetailPage'
 
 export default function AppRoutes() {
   return (
@@ -12,11 +13,13 @@ export default function AppRoutes() {
       <Route path="/" element={<Navigate to="/landing" replace />} />
       <Route path="/landing" element={<LandingPage />} />
       <Route path="/onboarding" element={<OnboardingPage />} />
+      <Route path="/bundles" element={<BundlePage />} />
+      <Route path="/bundles/:authorId" element={<RoadmapDetailPage />} />
+      <Route path="/plan" element={<MyPlanPage />} />
       <Route element={<MainLayout />}>
-        <Route path="/bundles" element={<BundlePage />} />
-        <Route path="/plan" element={<MyPlanPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
       </Route>
     </Routes>
   )
 }
+
