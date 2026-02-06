@@ -18,9 +18,11 @@ export interface OnboardingState {
   selectedField: FieldId | null
   selectedCompany: string | null
   searchQuery: string
+  activePresetName: string | null
   setStep: (step: 1 | 2) => void
   setSelectedField: (field: FieldId | null) => void
   setSelectedCompany: (company: string | null) => void
   setSearchQuery: (query: string) => void
+  setActivePresetName: (name: string | null) => void
   reset: () => void
 }
