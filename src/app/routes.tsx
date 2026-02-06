@@ -9,8 +9,8 @@ export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/onboarding" replace />} />
+      <Route path="/onboarding" element={<OnboardingPage />} />
       <Route element={<MainLayout />}>
-        <Route path="/onboarding" element={<OnboardingPage />} />
         <Route path="/bundles" element={<BundlePage />} />
         <Route path="/plan" element={<MyPlanPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
