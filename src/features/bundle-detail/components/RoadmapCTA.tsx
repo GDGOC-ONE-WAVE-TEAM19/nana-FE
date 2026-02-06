@@ -1,6 +1,8 @@
 interface RoadmapCTAProps {
     onCopy: () => void
     isLoading?: boolean
+    presetName?: string
+    presetDescription?: string
 }
 
 const DownloadIcon = () => (
@@ -10,10 +12,22 @@ const DownloadIcon = () => (
     </svg>
 )
 
-export default function RoadmapCTA({ onCopy, isLoading = false }: RoadmapCTAProps) {
+export default function RoadmapCTA({ onCopy, isLoading = false, presetName, presetDescription }: RoadmapCTAProps) {
     return (
         <div className="sticky top-24">
             <div className="bg-white rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
+                {/* Preset Info */}
+                {(presetName || presetDescription) && (
+                    <div className="mb-4 pb-4 border-b border-gray-100">
+                        {presetName && (
+                            <h3 className="font-bold text-gray-900 text-lg mb-1">{presetName}</h3>
+                        )}
+                        {presetDescription && (
+                            <p className="text-sm text-gray-500">{presetDescription}</p>
+                        )}
+                    </div>
+                )}
+
                 <button
                     onClick={onCopy}
                     disabled={isLoading}
@@ -29,4 +43,3 @@ export default function RoadmapCTA({ onCopy, isLoading = false }: RoadmapCTAProp
         </div>
     )
 }
-
