@@ -1,7 +1,9 @@
 import LandingHeader from '../features/landing/components/LandingHeader'
 import HeroSection from '../features/landing/components/HeroSection'
-import FeaturesSection from '../features/landing/components/FeaturesSection'
 import StatsSection from '../features/landing/components/StatsSection'
+import CoreFeaturesSection from '../features/landing/components/CoreFeaturesSection'
+import HowItWorksSection from '../features/landing/components/HowItWorksSection'
+import PersonaSection from '../features/landing/components/PersonaSection'
 import LandingFooter from '../features/landing/components/LandingFooter'
 
 export default function LandingPage() {
@@ -10,8 +12,10 @@ export default function LandingPage() {
       <LandingHeader />
       <main className="flex-grow">
         <HeroSection />
-        <FeaturesSection />
         <StatsSection />
+        <CoreFeaturesSection />
+        <HowItWorksSection />
+        <PersonaSection />
       </main>
       <LandingFooter />
     </div>
