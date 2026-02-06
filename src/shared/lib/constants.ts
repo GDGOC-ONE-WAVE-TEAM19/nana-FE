@@ -3,7 +3,6 @@ export const APP_NAME = 'StepIn'
 export const ROUTES = {
   ONBOARDING: '/onboarding',
   BUNDLES: '/bundles',
-  PLAN: '/plan',
   DASHBOARD: '/dashboard',
 } as const
 

@@ -58,7 +58,7 @@ export default function RoadmapDetailContainer() {
     const handleCopyRoadmap = () => {
         // In real implementation, copy roadmap to user's plan
         console.log('Copying roadmap for author:', authorId)
-        navigate('/plan')
+        navigate('/bundles')
     }
 
     return (
