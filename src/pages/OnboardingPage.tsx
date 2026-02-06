@@ -1,9 +1,11 @@
+import { useNavigate } from 'react-router-dom'
 import { useOnboarding } from '../features/onboarding/hooks/useOnboarding'
 import StepIndicator from '../features/onboarding/components/StepIndicator'
 import FieldSelector from '../features/onboarding/components/FieldSelector'
 import CompanySelector from '../features/onboarding/components/CompanySelector'
 
 export default function OnboardingPage() {
+  const navigate = useNavigate()
   const { step, canProceedStep1, canProceedStep2, goToStep2, goBackToStep1 } = useOnboarding()
 
   return (
@@ -41,6 +43,7 @@ export default function OnboardingPage() {
             <CompanySelector />
             <div className="mt-10 md:mt-16">
               <button
+                onClick={() => navigate('/bundles')}
                 disabled={!canProceedStep2}
                 className="w-full bg-[#5A51F0] hover:bg-indigo-600 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-lg py-4 rounded-xl shadow-[0_4px_14px_rgba(90,81,240,0.4)] transition-all flex items-center justify-center gap-2"
               >
