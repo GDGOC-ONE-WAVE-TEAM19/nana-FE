@@ -30,7 +30,7 @@ export default function BundleContainer({
     )
 
     return (
-        <div className="min-h-screen bg-[#F8F9FD]">
+        <div className="bg-[#F8F9FD]">
             {/* Hero Section */}
             <BundleHero company={company} jobTitle={jobTitle} />
 
