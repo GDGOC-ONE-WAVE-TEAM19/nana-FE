@@ -4,7 +4,7 @@ import OnboardingPage from '../pages/OnboardingPage'
 import BundlePage from '../pages/BundlePage'
 import DashboardPage from '../pages/DashboardPage'
 import RoadmapDetailPage from '../pages/RoadmapDetailPage'
-import MyPlanPage from '../pages/MyPlanPage'
+import { MainLayout, DashboardLayout } from '../shared/components/layout'
 
 export default function AppRoutes() {
   return (
@@ -12,10 +12,15 @@ export default function AppRoutes() {
       <Route path="/" element={<Navigate to="/landing" replace />} />
       <Route path="/landing" element={<LandingPage />} />
       <Route path="/onboarding" element={<OnboardingPage />} />
-      <Route path="/bundles" element={<BundlePage />} />
-      <Route path="/bundles/:authorId" element={<RoadmapDetailPage />} />
-      <Route path="/plan" element={<MyPlanPage />} />
-      <Route path="/dashboard" element={<DashboardPage />} />
+
+      <Route element={<MainLayout />}>
+        <Route path="/bundles" element={<BundlePage />} />
+        <Route path="/bundles/:authorId" element={<RoadmapDetailPage />} />
+      </Route>
+
+      <Route element={<DashboardLayout />}>
+        <Route path="/dashboard" element={<DashboardPage />} />
+      </Route>
     </Routes>
   )
 }
