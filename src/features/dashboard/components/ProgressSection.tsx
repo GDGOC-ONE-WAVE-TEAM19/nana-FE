@@ -1,27 +1,31 @@
-import { useDashboard } from '../hooks/useDashboard'
+import { useTodos } from '../todo/hooks/useTodos'
 
 export default function ProgressSection() {
-  const { total, progress } = useDashboard()
+  const { stats } = useTodos()
 
   return (
-    <div className="bg-white rounded-2xl shadow p-4 sm:p-6">
-      <h3 className="text-lg font-semibold mb-4">오늘의 달성률</h3>
-      <div className="space-y-3">
-        <div className="flex items-center gap-4">
-          <div className="flex-1 h-3 bg-gray-200 rounded-full overflow-hidden">
-            <div
-              className="h-full rounded-full transition-all duration-300"
-              style={{
-                width: `${progress}%`,
-                background: 'linear-gradient(to right, #5048e5, #6C5CE7)',
-              }}
-            />
-          </div>
-          <span className="text-2xl sm:text-3xl font-bold text-[#5048e5]">{progress}%</span>
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-6">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-base sm:text-lg font-bold text-gray-900">전체 진행률</h3>
+        <div className="flex items-baseline gap-1">
+          <span className="text-xs text-gray-400">
+            {stats.done}/{stats.total}개 완료
+          </span>
         </div>
-        <p className="text-sm text-gray-500">
-          오늘의 할 일 {total}개 중
-        </p>
+      </div>
+      <div className="flex items-center gap-4">
+        <div className="flex-1 h-3 bg-gray-100 rounded-full overflow-hidden">
+          <div
+            className="h-full rounded-full transition-all duration-500 ease-out"
+            style={{
+              width: `${stats.progress}%`,
+              background: 'linear-gradient(to right, #5048e5, #7C3AED)',
+            }}
+          />
+        </div>
+        <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-[#5048e5] to-[#7C3AED] bg-clip-text text-transparent">
+          {stats.progress}%
+        </span>
       </div>
     </div>
   )

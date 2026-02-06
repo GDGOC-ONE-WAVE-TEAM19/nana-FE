@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import DashboardHeader from '../features/dashboard/components/DashboardHeader'
 import ProgressSection from '../features/dashboard/components/ProgressSection'
 import TodayPlanCard from '../features/dashboard/components/TodayPlanCard'
@@ -6,24 +7,26 @@ import DashboardTodoList from '../features/dashboard/components/DashboardTodoLis
 import WeeklyBalanceCard from '../features/dashboard/components/WeeklyBalanceCard'
 
 export default function DashboardPage() {
+  const [selectedTag, setSelectedTag] = useState('all')
+
   return (
-    <>
-      <DashboardHeader />
-      <div className="mt-6">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+      {/* Left Column: Main Content */}
+      <div className="lg:col-span-7 space-y-5 lg:space-y-6">
+        <DashboardHeader />
         <ProgressSection />
+        <TodayPlanCard />
+        <CategoryFilterPills
+          selectedTag={selectedTag}
+          onSelectTag={setSelectedTag}
+        />
+        <DashboardTodoList selectedTag={selectedTag} />
       </div>
-      <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
-        <div className="lg:col-span-8 space-y-5 lg:space-y-6">
-          <TodayPlanCard />
-          <CategoryFilterPills />
-          <DashboardTodoList />
-        </div>
-        <div className="lg:col-span-4">
-          <div className="lg:sticky lg:top-6">
-            <WeeklyBalanceCard />
-          </div>
-        </div>
+
+      {/* Right Column: Weekly Balance - fixed position, not sticky */}
+      <div className="lg:col-span-5">
+        <WeeklyBalanceCard />
       </div>
-    </>
+    </div>
   )
 }
