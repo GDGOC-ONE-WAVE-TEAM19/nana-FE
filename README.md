@@ -13,18 +13,12 @@
 | 서버 상태 | TanStack React Query | 5 |
 | 클라이언트 상태 | Zustand | 5 |
 | 라우팅 | React Router | 7 |
-| Mock API | json-server | 1.0-beta |
 | 린트/포맷 | ESLint 9 + Prettier 3 | - |
 
 ## 시작하기
 
 ```bash
 npm install
-
-# Mock API (터미널 1)
-npx json-server server/db.json
-
-# 개발 서버 (터미널 2)
 npm run dev
 ```
 
@@ -42,8 +36,7 @@ src/
 │   ├── profile/
 │   └── friend/
 ├── shared/          # 공용 모듈 (UI, hooks, lib, providers)
-├── styles/          # Tailwind CSS
-└── server/          # json-server Mock DB
+└── styles/          # Tailwind CSS
 ```
 
 ### FBA 의존성 규칙
@@ -80,6 +73,13 @@ feature 간 데이터가 필요하면 **routes에서 조합**한다.
 | 글로벌 클라이언트 | Zustand |
 | 로컬 UI | useState |
 | URL 상태 | useSearchParams |
+
+### Zustand Store 배치 기준
+
+| 위치 | 기준 | 예시 |
+|------|------|------|
+| `shared/stores/` | 2개 이상 feature에서 읽는 전역 상태 | 인증 유저, 타이머 현재 상태, 오늘 활동/스트릭 |
+| `features/*/stores/` | 해당 feature 내부에서만 쓰는 상태 | 프로젝트 폼, 피드 필터/탭 |
 
 ### import 순서
 
@@ -118,12 +118,46 @@ chore: db.json 초기 데이터 추가
 
 ## 2인 분담
 
+### Feature / 페이지
+
 | 개발자 A (SNS 레이어) | 개발자 B (Standalone 레이어) |
 |----------------------|---------------------------|
 | auth, dashboard, feed, friend | project, timer, profile |
 | Landing, Login, Onboarding, Dashboard, Feed | Projects, ProjectDetail, Timer, Profile |
 
-**공동 (Day 1 오전)**: routes/index.tsx, shared/ui, layout, types, db.json
+**공동 (Day 1 오전)**: routes/index.tsx, shared/ui, layout, types
+
+### Store 소유권
+
+| Store | 관심사 | 소유 |
+|-------|--------|------|
+| authStore | 로그인 유저 정보, 인증 여부 | **A** |
+| activityStore | 스트릭, 오늘 활동 기록 | **A** |
+| feedFilterStore | 피드 탭/검색 필터 (feed 전용) | **A** |
+| timerStore | 타이머 상태값 (페이지 이동해도 유지) | **B** |
+| projectFormStore | 프로젝트 생성/편집 폼 (project 전용) | **B** |
+
+### React Query 담당
+
+| 데이터 | 소유 |
+|--------|------|
+| 유저/인증 | **A** |
+| 대시보드 집계 | **A** |
+| 피드 목록 | **A** |
+| 친구 목록 | **A** |
+| 프로젝트 CRUD | **B** |
+| 마일스톤/투두 | **B** |
+| 타이머 세션 기록 | **B** |
+| 프로필 조회 | **B** |
+
+### 충돌 방지 규칙
+
+| 파일 | 소유 | 규칙 |
+|------|------|------|
+| `routes/index.tsx` | A | B는 PR로 수정 |
+| `shared/components/ui/` | 공동 | 추가 자유, 수정 시 상의 |
+| `shared/stores/` | 각자 소유 store만 | 상대 store 수정 시 상의 |
+| `styles/index.css` | 공동 | 변수 추가만 허용 |
 
 ## npm scripts
 
