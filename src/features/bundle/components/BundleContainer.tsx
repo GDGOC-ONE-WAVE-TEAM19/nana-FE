@@ -90,11 +90,6 @@ export default function BundleContainer({
     const [currentPage, setCurrentPage] = useState(1)
     const totalPages = 3
 
-    const handleViewRoadmap = (authorId: string) => {
-        console.log('View roadmap for author:', authorId)
-        // Navigate to roadmap detail page
-    }
-
     return (
         <div className="min-h-screen bg-[#F8F9FD]">
             {/* Hero Section */}
@@ -122,7 +117,6 @@ export default function BundleContainer({
                                 <BundleAuthorCard
                                     key={author.id}
                                     author={author}
-                                    onViewRoadmap={handleViewRoadmap}
                                 />
                             ))}
                         </div>
