@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom'
 
 const navItems = [
-  { to: '/dashboard', label: '홈', icon: 'home', end: true },
-  { to: '#', label: '대시보드', icon: 'bar_chart' },
-  { to: '#', label: '고스트', icon: 'groups' },
-  { to: '#', label: '프로필', icon: 'person' },
+  { to: '/landing', label: '메인화면', icon: 'home', end: true },
+  { to: '/bundles', label: '합격자 투두 번들', icon: 'groups' },
+  { to: '/dashboard', label: '대시보드', icon: 'bar_chart' },
+  { to: '/', label: '프로필', icon: 'person' },
 ]
 
 export default function BottomNav() {

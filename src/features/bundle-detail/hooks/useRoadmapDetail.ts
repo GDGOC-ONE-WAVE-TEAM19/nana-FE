@@ -4,6 +4,7 @@
  */
 import { useNavigate } from 'react-router-dom'
 import { usePreset, useInitializePreset } from '../../bundle/hooks/usePresets'
+import { useOnboardingStore } from '../../onboarding/stores/onboardingStore'
 import type { Preset, PresetTodo } from '../../../shared/api'
 import type { RoadmapStep, RoadmapTodo } from '../types'
 
@@ -70,11 +71,12 @@ function countTodos(todos: PresetTodo[]): number {
 export function useCopyRoadmap() {
     const navigate = useNavigate()
     const { mutate, isPending, error } = useInitializePreset()
+    const setActivePresetName = useOnboardingStore((s) => s.setActivePresetName)
 
     const copyRoadmap = (presetName: string) => {
         mutate(presetName, {
             onSuccess: () => {
-                // Navigate to dashboard after successful copy
+                setActivePresetName(presetName)
                 navigate('/dashboard')
             },
         })

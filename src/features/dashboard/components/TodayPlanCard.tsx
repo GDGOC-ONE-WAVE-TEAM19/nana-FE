@@ -1,21 +1,33 @@
-import { useTodoStore } from '../todo/stores/todoStore'
+import InitialAvatar from '../../../shared/components/ui/InitialAvatar'
+import { useOnboardingStore } from '../../onboarding/stores/onboardingStore'
+import { usePreset } from '../../bundle/hooks/usePresets'
+import { useTodos } from '../todo/hooks/useTodos'
+
+function getStatusMessage(progress: number): { emoji: string; message: string } {
+  if (progress >= 80) return { emoji: '🎉', message: '오늘 할 일을 거의 다 했어요!' }
+  if (progress >= 50) return { emoji: '💪', message: '절반 이상 완료했어요, 힘내세요!' }
+  if (progress > 0) return { emoji: '🔥', message: '좋은 시작이에요, 계속 진행해 보세요' }
+  return { emoji: '📋', message: '오늘의 할 일을 시작해 보세요' }
+}
 
 export default function TodayPlanCard() {
-  const todos = useTodoStore((s) => s.todos)
+  const { todos, stats } = useTodos()
+  const activePresetName = useOnboardingStore((s) => s.activePresetName)
+  const { data: preset } = usePreset(activePresetName ?? undefined)
+
+  const displayName = preset?.name ?? 'StepIn 준비생'
+  const subtitle = preset?.description ?? '로드맵을 가져와 보세요'
   const displayTodos = todos.slice(0, 3)
+  const { emoji, message } = getStatusMessage(stats.progress)
 
   return (
     <div className="bg-white rounded-2xl shadow p-4 sm:p-6">
       <div className="flex items-start justify-between mb-6">
         <div className="flex items-center gap-3">
-          <img
-            src="https://api.dicebear.com/7.x/avataaars/svg?seed=Eunji"
-            alt="Coding Eunji"
-            className="w-10 h-10 rounded-full"
-          />
+          <InitialAvatar name={displayName} />
           <div>
-            <p className="font-bold text-gray-900">Coding Eunji</p>
-            <p className="text-sm text-gray-500">데이터 엔지니어 취준 6개월 차</p>
+            <p className="font-bold text-gray-900">{displayName}</p>
+            <p className="text-sm text-gray-500 line-clamp-1">{subtitle}</p>
           </div>
         </div>
         <button className="text-gray-400 hover:text-gray-600">
@@ -55,10 +67,8 @@ export default function TodayPlanCard() {
       </div>
 
       <div className="bg-yellow-50 rounded-lg p-2.5 sm:p-3 flex items-start gap-2">
-        <span className="text-lg">⚠️</span>
-        <p className="text-sm text-gray-700">
-          프로젝트 진행이 평균 대비 느려요
-        </p>
+        <span className="text-lg">{emoji}</span>
+        <p className="text-sm text-gray-700">{message}</p>
       </div>
     </div>
   )

@@ -2,31 +2,36 @@ import { useTodos } from '../todo/hooks/useTodos'
 
 export default function ProgressSection() {
   const { stats } = useTodos()
+  const averageProgress = 71
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-6">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-base sm:text-lg font-bold text-gray-900">전체 진행률</h3>
-        <div className="flex items-baseline gap-1">
-          <span className="text-xs text-gray-400">
-            {stats.done}/{stats.total}개 완료
-          </span>
-        </div>
-      </div>
-      <div className="flex items-center gap-4">
-        <div className="flex-1 h-3 bg-gray-100 rounded-full overflow-hidden">
-          <div
-            className="h-full rounded-full transition-all duration-500 ease-out"
-            style={{
-              width: `${stats.progress}%`,
-              background: 'linear-gradient(to right, #5048e5, #7C3AED)',
-            }}
-          />
-        </div>
-        <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-[#5048e5] to-[#7C3AED] bg-clip-text text-transparent">
+    <section>
+      <div className="flex justify-between items-end mb-2">
+        <h3 className="text-sm font-bold text-gray-800">오늘의 달성률</h3>
+        <span className="text-3xl sm:text-4xl font-bold text-[#5048e5]">
           {stats.progress}%
         </span>
       </div>
-    </div>
+
+      <div className="relative h-3 w-full bg-gray-100 rounded-full overflow-visible">
+        {/* Progress fill */}
+        <div
+          className="absolute top-0 left-0 h-full bg-[#5048e5] rounded-full transition-all duration-500"
+          style={{ width: `${stats.progress}%` }}
+        />
+
+        {/* Average marker */}
+        <div
+          className="absolute top-[-4px] h-5 w-[2px] bg-gray-400 z-10"
+          style={{ left: `${averageProgress}%` }}
+        >
+          <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-max">
+            <span className="text-[10px] font-medium text-gray-500 bg-white px-1 border border-gray-200 rounded">
+              합격자 평균 {averageProgress}%
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
   )
 }
