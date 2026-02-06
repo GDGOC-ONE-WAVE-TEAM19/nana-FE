@@ -5,7 +5,7 @@
 import { Configuration, TodosApi, TagsApi } from './index'
 
 const config = new Configuration({
-    basePath: import.meta.env.VITE_API_URL || 'http://localhost:8080',
+    basePath: import.meta.env.VITE_API_URL || '',
     accessToken: async () => {
         // TODO: Replace with actual auth token retrieval
         return localStorage.getItem('access_token') || ''

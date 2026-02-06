@@ -1,20 +1,20 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 
 const navItems = [
-  { to: '/dashboard', label: '홈', icon: 'home', end: true },
-  { to: '#', label: '대시보드', icon: 'bar_chart' },
-  { to: '#', label: '고스트', icon: 'groups' },
-  { to: '#', label: '프로필', icon: 'person' },
+  { to: '/landing', label: '메인화면', icon: 'home', end: true },
+  { to: '/bundles', label: '합격자 투두 번들', icon: 'groups' },
+  { to: '/dashboard', label: '대시보드', icon: 'bar_chart' },
+  { to: '/', label: '프로필', icon: 'person' },
 ]
 
 export default function Sidebar() {
   return (
     <div className="flex h-full w-64 flex-col border-r border-gray-100 bg-white p-6">
       {/* Logo */}
-      <div className="mb-10 flex items-center gap-2">
+      <Link to="/landing" className="mb-10 flex items-center gap-2 hover:opacity-80 transition-opacity">
         <span className="material-symbols-outlined text-[#5048e5]">ads_click</span>
         <span className="text-xl font-bold">StepIn</span>
-      </div>
+      </Link>
 
       {/* Navigation */}
       <nav className="flex flex-1 flex-col space-y-2">
