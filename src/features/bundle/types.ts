@@ -17,3 +17,16 @@ export interface Bundle {
   copiedCount: number
   createdAt: string
 }
+
+// Author profile for bundle list cards
+export interface BundleAuthor {
+  id: string
+  nickname: string
+  avatarUrl: string
+  university: string
+  major: string
+  quote: string
+  prepMonths: number
+  completionRate: number
+  isVerified: boolean
+}

@@ -1,10 +1,5 @@
-import BundleList from '../features/bundle/components/BundleList'
+import BundleContainer from '../features/bundle/components/BundleContainer'
 
 export default function BundlePage() {
-  return (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-gray-900">Bundles</h2>
-      <BundleList />
-    </div>
-  )
+    return <BundleContainer company="네이버" jobTitle="백엔드 개발" />
 }
